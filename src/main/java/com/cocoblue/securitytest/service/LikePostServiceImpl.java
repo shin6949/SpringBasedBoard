@@ -2,6 +2,7 @@ package com.cocoblue.securitytest.service;
 
 import com.cocoblue.securitytest.dao.LikePostDao;
 import com.cocoblue.securitytest.dto.LikePost;
+import org.jetbrains.annotations.NotNull;
 
 public class LikePostServiceImpl implements LikePostService {
     private final LikePostDao likePostDao;
@@ -10,19 +11,18 @@ public class LikePostServiceImpl implements LikePostService {
         this.likePostDao = likePostDao;
     }
 
-    // TODO: 작성 필요
     @Override
     public long getLikeCount(String postId) {
-        return 0;
+        return likePostDao.getLikeCount(postId);
     }
 
     @Override
     public boolean judgeAlreadyLike(String postId, String memberId) {
-        return false;
+        return likePostDao.judgeAlreadyLike(postId, memberId);
     }
 
     @Override
-    public boolean insertLikePost(LikePost likePost) {
-        return false;
+    public boolean insertLikePost(@NotNull LikePost likePost) {
+        return insertLikePost(likePost);
     }
 }
