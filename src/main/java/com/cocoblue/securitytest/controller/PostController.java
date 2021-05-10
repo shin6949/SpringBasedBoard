@@ -16,8 +16,8 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/board")
 public class PostController {
-    PostService postService;
-    CommentService commentService;
+    private final PostService postService;
+    private final CommentService commentService;
 
     public PostController(PostService postService, CommentService commentService) {
         this.postService = postService;
