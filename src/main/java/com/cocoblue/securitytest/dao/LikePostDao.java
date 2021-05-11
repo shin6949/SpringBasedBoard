@@ -1,10 +1,7 @@
 package com.cocoblue.securitytest.dao;
 
-import com.cocoblue.securitytest.dto.Comment;
 import com.cocoblue.securitytest.dto.LikePost;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -28,7 +25,7 @@ public class LikePostDao {
                 .usingGeneratedKeyColumns("id");
     }
 
-    public long getLikeCount(String postId) {
+    public long getLikeCount(long postId) {
         Map<String, Object> map = new HashMap<>();
         map.put("postId", postId);
 
@@ -43,7 +40,7 @@ public class LikePostDao {
         return result;
     }
 
-    public boolean judgeAlreadyLike(String postId, String memberId) {
+    public boolean judgeAlreadyLike(long postId, long memberId) {
         Map<String, Object> map = new HashMap<>();
         map.put("postId", postId);
         map.put("memberId", memberId);

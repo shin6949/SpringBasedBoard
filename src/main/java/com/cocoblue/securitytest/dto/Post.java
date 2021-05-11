@@ -21,4 +21,8 @@ public class Post {
     private long viewNumber;
     private String writerName;
     private String boardName;
+
+    public void setWriteTime(LocalDateTime localDateTime) {
+        this.writeTimeString = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
 }

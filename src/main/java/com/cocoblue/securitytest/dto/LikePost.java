@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LikePost {
-    private int id;
-    private int postId;
-    private int memberId;
+    private long id;
+    private long postId;
+    private long memberId;
     private LocalDateTime likeTime;
 }
