@@ -41,14 +41,21 @@
         function doLike(){
             // ajax 통신
             $.ajax({
-                type : "GET",            // HTTP method type(GET, POST) 형식이다.
+                type : "GET",
                 url : "/like/do/${post.id}",
-                success : function(res){ // 비동기통신의 성공일경우 success 콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
-                    // 응답코드 > 0000
-                    alert(res.code);
+                success : function(res){
+                    if(res.result) {
+                        alert("추천이 완료되었습니다.");
+                    } else {
+                        alert("이미 추천한 게시글 입니다");
+                    }
                 },
-                error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                    alert("통신 실패.")
+                error: function(jqXHR, textStatus) {
+                    if (jqXHR.status == 401) {
+                        alert("비로그인 상태입니다.");
+                    } else {
+                        alert("시스템 오류입니다. 잠시 후 다시 접속하시기 바랍니다.");
+                    }
                 }
             });
         }

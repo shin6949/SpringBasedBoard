@@ -28,8 +28,6 @@ public class LikePostController {
 
     @GetMapping("/do/{postId}")
     public Map<String, Object> doLike(@PathVariable String postId) {
-        // AJAX 처리 과정 확인할 필요 있음.
-        System.out.println(postId);
         Map<String, Object> result = new HashMap<>();
 
         // 비 로그인 상태라면, 401 에러를 표출
@@ -51,6 +49,7 @@ public class LikePostController {
         if(likePostService.judgeAlreadyLike(Long.parseLong(postId), customUserDetails.getId())) {
             result.put("result", false);
             result.put("exist", true);
+            System.out.println(result);
             return result;
         }
 
@@ -60,6 +59,7 @@ public class LikePostController {
             result.put("result", false);
         }
 
+        System.out.println(result);
         return result;
     }
 

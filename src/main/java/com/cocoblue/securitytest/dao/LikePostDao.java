@@ -48,13 +48,14 @@ public class LikePostDao {
         long result;
 
         try {
-            result = (long) jdbc.queryForMap(LikePostDaoSqls.SELECT_LIKE_COUNT_BY_POST_ID, map).get("count");
+            result = (long) jdbc.queryForMap(LikePostDaoSqls.SELECT_LIKE_COUNT_BY_POST_ID_AND_MEMBER_ID, map).get("count");
         } catch (Exception e) {
+            e.printStackTrace();
             // 데이터가 없을 경우 추천한 적이 없는 것이므로 true 반환
-            return true;
+            return false;
         }
 
-        return result <= 0;
+        return result > 0;
     }
 
     public boolean insertLikePost(@NotNull LikePost likePost) {
